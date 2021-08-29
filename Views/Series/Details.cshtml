@@ -1,0 +1,176 @@
+﻿@model MarvelComicList.ComicAppModels.SeriesData
+
+@{
+    ViewData["Title"] = "Details";
+
+    var Count = ViewBag.Count;
+    var Limit = ViewBag.Limit;
+    var Offset = ViewBag.Offset;
+    var Total = ViewBag.Total;
+    var Page = ViewBag.Page;
+
+    var first = Offset + 1;
+    var last = Offset + Count;
+    var next = Page + 1;
+    var prev = Page - 1;
+    var totalPage = (int)Math.Ceiling((double)Total / Limit);
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Series" asp-action="Index">Series</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</nav>
+
+<h1><strong>@Html.DisplayFor(model => model.Title)</strong></h1>
+
+<div>
+    <div class="lead">MARVEL SERIES INFORMATION</div>
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-4 justify-content-center">
+            <img src=@Html.DisplayFor(model => model.Thumbnail) />
+
+            <br />
+            <br />
+            <br />
+            @if (Page == 1)
+            {
+                <form>
+                    <input class="btn btn-success" type="button" value="Back to the list" onclick="history.back()">
+                </form>
+            }
+            else
+            {
+                <form>
+                    <button class="btn btn-success" asp-action="Index">Back to the list</button>
+                </form>
+            }
+        </div>
+        <div class="col-sm-8">
+            <h3><strong>GENERAL INFORMATION</strong></h3><br />
+
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ID)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ID)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Type)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.StartYear)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.StartYear)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-9 text-justify">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.DetailLink)
+                </dt>
+                <dd class="col-sm-9">
+                    <a href=@Html.DisplayFor(model => model.DetailLink) target=_blank>Click here to redirect Marvel.com</a>
+                </dd>
+            </dl>
+            <div class="row">
+                @if (Model.PreviousSeries != null)
+                {
+                    <div class="col-sm-4">
+                        <div class="card h-100">
+                            <img src=@Model.PreviousSeries.Thumbnail class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5><strong>PREVIOUS SERIES</strong></h5>
+                                <p class="card-text">@Model.PreviousSeries.Title</p>
+                                <a class="btn btn-outline-primary" asp-controller="Series" asp-action="Details" asp-route-id="@Model.PreviousSeries.ID" target="_blank">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.NextSeries != null)
+                {
+                    <div class="col-sm-4">
+                        <div class="card h-100">
+                            <img src=@Model.NextSeries.Thumbnail class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5><strong>NEXT SERIES</strong></h5>
+                                <p class="card-text">@Model.NextSeries.Title</p>
+                                <a class="btn btn-outline-primary" asp-controller="Series" asp-action="Details" asp-route-id="@Model.NextSeries.ID" target="_blank">Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <hr />
+
+            <h3><strong>RELATED CHARACTERS</strong></h3>
+            <p class="lead">
+                SHOWING @first - @last OF @Total RESULTS
+            </p>
+
+            <div class="row">
+                @foreach (var item in Model.Characters)
+                {
+                    <div class="col-sm-4">
+                        <br />
+                        <br />
+                        <div class="card" style="height: 90%">
+                            <img src=@item.Thumbnail class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">@item.Name</p>
+                                <a class="btn btn-outline-primary" asp-controller="Character" asp-action="Details" asp-route-id="@item.ID" target="_blank">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <br />
+            <form asp-controller="Series" asp-action="Details" asp-route-id="@Model.ID" method="get">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="lead">
+                            SHOWING @Page OF @totalPage PAGES
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                        @if (Page > 1)
+                        {
+                            <button class="btn btn-primary btn-block text-center" type="submit" name="page" value=@prev>Previous Page</button>
+                        }
+                    </div>
+                    <div class="col-sm-3">
+                        @if (Page < totalPage)
+                        {
+                            <button class="btn btn-primary btn-block text-center" type="submit" name="page" value=@next>Next Page</button>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <br />
+</div>

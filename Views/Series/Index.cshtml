@@ -1,0 +1,141 @@
+﻿@model List<MarvelComicList.ComicAppModels.SeriesData>
+
+@{
+    ViewData["Title"] = "Marvel Series";
+    var Order = ViewBag.Order;
+    var SearchTitle = ViewBag.SearchTitle;
+    var SearchYear = ViewBag.SearchYear;
+    var Count = ViewBag.Count;
+    var Limit = ViewBag.Limit;
+    var Offset = ViewBag.Offset;
+    var Total = ViewBag.Total;
+    var Page = ViewBag.Page;
+
+    var first = Offset + 1;
+    var last = Offset + Count;
+    var next = Page + 1;
+    var prev = Page - 1;
+    var totalPage = (int)Math.Ceiling((double)Total / Limit);
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Series</li>
+    </ol>
+</nav>
+
+<h1>Marvel Series List</h1>
+<br />
+<br />
+
+<form asp-controller="Series" asp-action="Index" method="get">
+    <div class="row">
+        <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" name="title" placeholder="Enter series title" value=@SearchTitle />
+        </div>
+        <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" name="startYear" placeholder="Start year" value=@SearchYear />
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-primary btn-block text-center" type="submit">Search</button>
+        </div>
+        <div class="col-sm-2">
+            <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle btn-block" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Order By
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="submit" name="orderBy" value="title">Title Ascending</button>
+                    <button class="dropdown-item" type="submit" name="orderBy" value="-title">Title Descending</button>
+                    <button class="dropdown-item" type="submit" name="orderBy" value="startYear">Year Ascending</button>
+                    <button class="dropdown-item" type="submit" name="orderBy" value="-startYear">Year Descending</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <a class="btn btn-outline-success btn-block" asp-action="Index">Clear Filters</a>
+        </div>
+    </div>
+</form>
+<br />
+<p class="lead">
+    SHOWING @first - @last OF @Total RESULTS
+</p>
+
+<table class="table table-striped">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src=@Html.DisplayFor(modelItem => item.Thumbnail) />
+                </td>
+                <td>
+                    <h4><strong>@Html.DisplayFor(modelItem => item.Title)</strong></h4>
+                    <hr />
+                    <dl class="row h-100">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.ID)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.Type)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.StartYear)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.StartYear)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.Description)
+                        </dt>
+                        <dd class="col-sm-10 text-justify">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </dd>
+                        <dt class="col-sm">
+                            <br />
+                            <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.ID">More Details</a>
+                        </dt>
+                    </dl>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+
+<form asp-controller="Series" asp-action="Index" method="get">
+    <input type="hidden" name="title" value=@SearchTitle>
+    <input type="hidden" name="orderBy" value=@Order>
+    <input type="hidden" name="startYear" value=@SearchYear>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="lead">
+                SHOWING @Page OF @totalPage PAGES
+            </p>
+        </div>
+        <div class="col-sm-2">
+            @if (Page > 1)
+            {
+                <button class="btn btn-primary btn-block text-center" type="submit" name="page" value=@prev>Previous Page</button>
+            }
+
+        </div>
+        <div class="col-sm-2">
+            @if (Page < totalPage)
+            {
+                <button class="btn btn-primary btn-block text-center" type="submit" name="page" value=@next>Next Page</button>
+            }
+        </div>
+    </div>
+</form>
