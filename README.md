@@ -1,4 +1,6 @@
-# VỀ MARVEL COMIC LIST
+# MARVEL COMIC LIST
+
+## VỀ PROJECT
 
 Marvel Comic List là một dự án cá nhân cho môn học Project 1 với đề tài tìm hiểu về ASP.NET MVC và API để xây dựng Web App sử dụng các public API. Marvel Comic List là một trang thông tin tìm kiếm thông tin các nhân vật, bộ truyện tranh từ cơ sở dữ liệu của [Marvel Comic](https://www.marvel.com/). Phục vụ người đọc có thể tra cứu dễ dàng các đầu truyện có nhân vật yêu thích xuất hiện, hay tổng hợp những nhân vật có xuất hiện trong các đầu truyện.
 
