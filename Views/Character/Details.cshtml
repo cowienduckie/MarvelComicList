@@ -40,9 +40,17 @@
             <br />
             @if (Page == 1)
             {
-                <form>
-                    <input class="btn btn-success" type="button" value="Back to the list" onclick="history.back()">
+                <form asp-action="Index" id="btn-back-form">
+                    <button class="btn btn-success" id="btn-back">
+                        Back to the list
+                    </button>
                 </form>
+                <script>
+                    document.getElementById('btn-back').addEventListener('click', () => {
+                        history.back();
+                        document.forms["btn-back-form"].submit();
+                    });
+                </script>
             }
             else
             {

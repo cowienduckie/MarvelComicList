@@ -17,7 +17,7 @@ Marvel Comics API là một RESTful service cung cấp những phương thức c
 5. **Comic events and crossovers:**  Những câu chuyện rất lớn, liên kết nhiều bộ truyện lại với nhau.  
 6. **Creators:**  Tất cả những tác giả, thành viên tham gia trong quá trình sản xuất nội dung, ấn bản của tập truyện hay bộ truyện.
 
-## DOCKERIZE PROJECT
+## DOCKERIZE PROJECT TO HEROKU
 
 Step 1. Login Heroku
 
