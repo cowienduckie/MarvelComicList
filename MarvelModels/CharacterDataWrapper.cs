@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MarvelComicList.MarvelModels
+﻿namespace MarvelComicList.MarvelModels
 {
     public class CharacterDataWrapper
     {
@@ -13,6 +8,6 @@ namespace MarvelComicList.MarvelModels
         public string AttributionText { get; set; }
         public string AttributionHTML { get; set; }
         public string Etag { get; set; }
-        public CharacterDataContainer Data { get; set; }    
+        public CharacterDataContainer Data { get; set; }
     }
 }

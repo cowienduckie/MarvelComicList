@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MarvelComicList.ComicAppModels
 {
@@ -18,16 +15,16 @@ namespace MarvelComicList.ComicAppModels
 
         public string Thumbnail { get; set; }
 
-        [Display (Name = "Start year")]
+        [Display(Name = "Start year")]
         public int StartYear { get; set; }
 
-        [Display (Name = "Type")]
+        [Display(Name = "Type")]
         public string Type { get; set; }
 
-        [Display (Name = "Previous Series")]
-        public SeriesData PreviousSeries { get; set;  }
+        [Display(Name = "Previous Series")]
+        public SeriesData PreviousSeries { get; set; }
 
-        [Display (Name = "Next Series")]
+        [Display(Name = "Next Series")]
         public SeriesData NextSeries { get; set; }
 
         [Display(Name = "Series details")]

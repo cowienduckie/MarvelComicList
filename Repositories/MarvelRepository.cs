@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using RestSharp;
-using Newtonsoft.Json.Linq;
+﻿using MarvelComicList.Configs;
 using MarvelComicList.MarvelModels;
-using MarvelComicList.Configs;
-using System.Diagnostics;
-using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using System;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace MarvelComicList.Repositories
 {
     public class MarvelRepository : IMarvelRepository
     {
-        string PUBLIC_KEY = Constants.PUBLIC_KEY;
-        string PRIVATE_KEY = Constants.PRIVATE_KEY;
+        private string PUBLIC_KEY = Constants.PUBLIC_KEY;
+        private string PRIVATE_KEY = Constants.PRIVATE_KEY;
 
         CharacterDataWrapper IMarvelRepository.GetCharacter(int id)
         {
@@ -39,6 +35,7 @@ namespace MarvelComicList.Repositories
 
             return null;
         }
+
         public CharacterDataWrapper GetCharacterList(string name = null, string orderBy = null, int page = 1)
         {
             long timeStamp = DateTime.Now.ToFileTime();

@@ -1,5 +1,3 @@
-using System;
-
 namespace MarvelComicList.Models
 {
     public class ErrorViewModel

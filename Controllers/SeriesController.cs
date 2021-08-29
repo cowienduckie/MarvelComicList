@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MarvelComicList.ComicAppModels;
+using MarvelComicList.MarvelModels;
+using MarvelComicList.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MarvelComicList.Repositories;
-using MarvelComicList.ComicAppModels;
-using MarvelComicList.MarvelModels;
 
 namespace MarvelComicList.Controllers
 {
@@ -106,14 +104,13 @@ namespace MarvelComicList.Controllers
                 CharacterData newChar = new CharacterData();
 
                 newChar.ID = character.ID;
-                newChar.Name= character.Name;
+                newChar.Name = character.Name;
                 newChar.Thumbnail = character.Thumbnail.Path + "/standard_xlarge." + character.Thumbnail.Extension;
 
                 viewModel.Characters.Add(newChar);
             });
 
             viewModel.DetailLink = series.URLs[0].URL;
-            
 
             ViewBag.Count = characterDataWrapper.Data.Count;
             ViewBag.Limit = characterDataWrapper.Data.Limit;
@@ -122,7 +119,7 @@ namespace MarvelComicList.Controllers
             ViewBag.Page = page;
 
             //Next and previous series
-            
+
             if (series.Next != null)
             {
                 string link = "http://gateway.marvel.com/v1/public/series/";
@@ -135,7 +132,7 @@ namespace MarvelComicList.Controllers
                 viewModel.NextSeries.Title = seri.Title;
                 viewModel.NextSeries.Thumbnail = seri.Thumbnail.Path + "/standard_xlarge." + seri.Thumbnail.Extension;
             }
-                
+
             if (series.Previous != null)
             {
                 string link = "http://gateway.marvel.com/v1/public/series/";

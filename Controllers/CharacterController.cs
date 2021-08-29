@@ -2,9 +2,7 @@
 using MarvelComicList.MarvelModels;
 using MarvelComicList.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MarvelComicList.Controllers
 {
@@ -107,7 +105,7 @@ namespace MarvelComicList.Controllers
             if (character.URLs.Count >= 2)
                 viewModel.WikiLink = character.URLs[1].URL;
 
-            if(character.URLs.Count == 3)
+            if (character.URLs.Count == 3)
                 viewModel.ComicLink = character.URLs[2].URL;
 
             ViewBag.Count = seriesDataWrapper.Data.Count;
