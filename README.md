@@ -1,11 +1,11 @@
 # MARVEL COMIC LIST
 
 
-[Heroku](https://marvel-comic-list.herokuapp.com/): https://marvel-comic-list.herokuapp.com/
+[Heroku](https://marvel-comic-list.herokuapp.com/)
 
-[Github](https://github.com/cowienduckie/MarvelComicList): https://github.com/cowienduckie/MarvelComicList
+[Github](https://github.com/cowienduckie/MarvelComicList)
 
-[Docker Hub](https://hub.docker.com/r/cowienduckie/marvel-comic-list): https://hub.docker.com/r/cowienduckie/marvel-comic-list
+[Docker Hub](https://hub.docker.com/r/cowienduckie/marvel-comic-list)
 
 ## VỀ PROJECT
 
