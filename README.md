@@ -16,7 +16,7 @@ Marvel Comics API là một RESTful service cung cấp những phương thức c
 
 ## DOCKERIZE PROJECT
 
-```docker heroku
+```docker
 heroku container:login
 docker build -t YourAppName .
 heroku container:push -a YourAppName web
