@@ -41,7 +41,7 @@ namespace MarvelComicList.Repositories
             long timeStamp = DateTime.Now.ToFileTime();
             string hashCode = MD5Hash($"{timeStamp}" + PRIVATE_KEY + PUBLIC_KEY);
 
-            int limit = 20;
+            int limit = 10;
             int offset = --page * limit;
 
             //Connection String
@@ -125,7 +125,7 @@ namespace MarvelComicList.Repositories
             long timeStamp = DateTime.Now.ToFileTime();
             string hashCode = MD5Hash($"{timeStamp}" + PRIVATE_KEY + PUBLIC_KEY);
 
-            int limit = 20;
+            int limit = 10;
             int offset = --page * limit;
 
             //Connection String
